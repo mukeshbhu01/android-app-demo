@@ -26,7 +26,7 @@ class HomeViewModel @Inject constructor(
     }
 
     private var _searchQuery = MutableStateFlow("")
-    val searchQuery : StateFlow<String> = _searchQuery.asStateFlow()
+    val searchQuery: StateFlow<String> = _searchQuery.asStateFlow()
 
     private val _homeScreenState: MutableStateFlow<HomeScreenState> =
         MutableStateFlow(HomeScreenState.InitialState)
@@ -69,7 +69,8 @@ class HomeViewModel @Inject constructor(
                         }
 
                         is Result.Error -> {
-                            _homeScreenState.value = HomeScreenState.Error(message = state.message, code = state.code)
+                            _homeScreenState.value =
+                                HomeScreenState.Error(message = state.message, code = state.code)
                         }
                     }
                 }
