@@ -1,0 +1,105 @@
+[versions]
+agp = "8.5.1"
+kotlin = "1.9.24"
+coreKtx = "1.13.1"
+lifecycleRuntimeKtx = "2.8.4"
+
+#Coroutines
+coroutines = "1.8.1"
+
+#compose
+activityCompose = "1.9.1"
+composeBom = "2024.06.00"
+
+#Navigation
+navigationCompose = "2.8.0-beta06"
+serializationPlugin = "1.9.24"
+serialization = "1.6.3"
+hiltNavigaitonCompose = "1.0.0"
+
+#DI
+hiltVersion = "2.49"
+kspVersion = "1.9.25-1.0.20"
+
+#Retrofit
+retrofit = "2.11.0"
+okHttp3 = "4.12.0"
+
+#Coil
+coil = "2.7.0"
+
+#Test
+junit = "4.13.2"
+junitVersion = "1.2.1"
+espressoCore = "3.6.1"
+mockk = "1.13.12"
+coreTesting = "2.2.0"
+kotlinxCoroutinesTest = "1.8.1"
+turbine = "1.0.0"
+
+[libraries]
+#Core
+androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
+androidx-lifecycle-runtime-ktx = { group = "androidx.lifecycle", name = "lifecycle-runtime-ktx", version.ref = "lifecycleRuntimeKtx" }
+androidx-material3 = { group = "androidx.compose.material3", name = "material3" }
+
+# coroutines
+kotlinx-coroutines-android = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-android", version.ref = "coroutines" }
+
+#compose
+androidx-activity-compose = { group = "androidx.activity", name = "activity-compose", version.ref = "activityCompose" }
+androidx-compose-bom = { group = "androidx.compose", name = "compose-bom", version.ref = "composeBom" }
+androidx-ui = { group = "androidx.compose.ui", name = "ui" }
+androidx-ui-graphics = { group = "androidx.compose.ui", name = "ui-graphics" }
+androidx-ui-tooling = { group = "androidx.compose.ui", name = "ui-tooling" }
+androidx-ui-tooling-preview = { group = "androidx.compose.ui", name = "ui-tooling-preview" }
+
+
+#Navigation
+navigation-compose = { group = "androidx.navigation", name = "navigation-compose", version.ref = "navigationCompose" }
+kotlinx-serialization-core = { group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-core", version.ref = "serialization" }
+
+#DI
+hilt-android = { group = "com.google.dagger", name = "hilt-android" , version.ref = "hiltVersion"}
+hilt-compiler = { group = "com.google.dagger", name = "hilt-compiler" , version.ref = "hiltVersion"}
+hilt-navigation-compose = { group = "androidx.hilt", name = "hilt-navigation-compose" , version.ref = "hiltNavigaitonCompose"}
+
+#Retrofit
+network-retrofit = { group = "com.squareup.retrofit2", name = "retrofit" , version.ref = "retrofit"}
+network-retrofit-converter = { group = "com.squareup.retrofit2", name = "converter-gson" , version.ref = "retrofit"}
+network-http-bom = { group = "com.squareup.okhttp3", name = "okhttp-bom" , version.ref = "okHttp3"}
+network-http-client = { group = "com.squareup.okhttp3", name = "okhttp" , version.ref = "okHttp3"}
+network-http-logging = { group = "com.squareup.okhttp3", name = "logging-interceptor" , version.ref = "okHttp3"}
+
+#Coil- Image Loading
+image-loading-coil = { group = "io.coil-kt", name = "coil-compose", version.ref = "coil"}
+
+
+# Test
+junit = { group = "junit", name = "junit", version.ref = "junit" }
+androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
+androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
+androidx-ui-test-manifest = { group = "androidx.compose.ui", name = "ui-test-manifest" }
+androidx-ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit4" }
+androidx-test-mockk = { group = "io.mockk", name = "mockk", version.ref = "mockk" }
+kotlinx-coroutines-test = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "kotlinxCoroutinesTest" }
+androidx-core-test = { module = "androidx.arch.core:core-testing", version.ref = "coreTesting" }
+turbine = { module = "app.cash.turbine:turbine", version.ref = "turbine" }
+
+[bundles]
+compose-ui = [
+            "androidx-ui",
+            "androidx-ui-graphics",
+            "androidx-ui-tooling",
+            "androidx-ui-tooling-preview"
+            ]
+
+network-client = ["network-retrofit", "network-retrofit-converter", "network-http-client", "network-http-logging", "image-loading-coil"]
+
+[plugins]
+android-application = { id = "com.android.application", version.ref = "agp" }
+jetbrains-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+kotlinAndroidKsp = { id = "com.google.devtools.ksp", version.ref ="kspVersion" }
+hiltAndroid = { id = "com.google.dagger.hilt.android", version.ref ="hiltVersion" }
+serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref ="serializationPlugin" }
+
