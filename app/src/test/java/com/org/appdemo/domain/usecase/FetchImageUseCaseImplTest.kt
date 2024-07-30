@@ -32,7 +32,7 @@ class FetchImageUseCaseImplTest {
     fun `verify remoteDataSource fetchImages`() = runTest {
         coEvery { imageRepository.getImages(any()) } returns mockk()
         runBlocking {
-            useCase.invoke("")
+            useCase("")
         }
         coVerify(exactly = 1) { imageRepository.getImages(any()) }
     }

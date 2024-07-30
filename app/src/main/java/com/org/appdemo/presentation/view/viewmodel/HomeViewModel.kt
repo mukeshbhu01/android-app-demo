@@ -1,9 +1,5 @@
 package com.org.appdemo.presentation.view.viewmodel
 
-import androidx.compose.runtime.State
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.org.appdemo.common.LogUtil
@@ -54,7 +50,7 @@ class HomeViewModel @Inject constructor(
 
     private fun loadImages(query: String) {
         viewModelScope.launch {
-            useCase.invoke(searchQuery = query)
+            useCase(searchQuery = query)
                 .onStart {
                     LogUtil.debugLog(log = "Load image..onStart")
                     _homeScreenState.value = HomeScreenState.Loading

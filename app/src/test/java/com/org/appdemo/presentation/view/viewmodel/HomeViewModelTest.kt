@@ -15,7 +15,13 @@ import io.mockk.impl.annotations.RelaxedMockK
 import io.mockk.mockk
 import io.mockk.mockkObject
 import io.mockk.unmockkAll
+import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.toList
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.test.UnconfinedTestDispatcher
 import kotlinx.coroutines.test.runTest
 import org.junit.After
 import org.junit.Assert
@@ -45,8 +51,19 @@ class HomeViewModelTest {
     }
 
     @Test
+    fun `test search query string with search content change intent`() = runTest {
+        val searchText = "abc"
+        viewModel.handleHomeIntent(HomeScreenIntent.SearchQuery(searchText))
+        viewModel.searchQuery.test {
+            val emittedItem = awaitItem()
+            Assert.assertTrue(emittedItem == searchText)
+        }
+    }
+
+
+    @Test
     fun `test success state with empty images list`() = runTest {
-        coEvery { useCase.invoke(any()) } answers { flow { emit(Result.Error(message = "")) } }
+        coEvery { useCase(any()) } answers { flow { emit(Result.Error(message = "")) } }
         viewModel.handleHomeIntent(HomeScreenIntent.LoadImages("cat"))
 
         viewModel.homeScreenState.test {
@@ -60,7 +77,7 @@ class HomeViewModelTest {
     @Test
     fun `test success state with ImageResponseModel`() = runTest {
         val images = DataMocks.imageResponseModelList
-        coEvery { useCase.invoke(any()) } answers { flow { emit(Result.Success(responseData = images)) } }
+        coEvery { useCase(any()) } answers { flow { emit(Result.Success(responseData = images)) } }
         viewModel.handleHomeIntent(HomeScreenIntent.LoadImages("cat"))
 
         viewModel.homeScreenState.test {
@@ -78,7 +95,7 @@ class HomeViewModelTest {
     fun `test success state with images`() = runTest {
         val images = DataMocks.imageResponseModelList
 
-        coEvery { useCase.invoke(any()) } answers { flow { emit(Result.Success(responseData = images)) } }
+        coEvery { useCase(any()) } answers { flow { emit(Result.Success(responseData = images)) } }
         viewModel.handleHomeIntent(HomeScreenIntent.LoadImages("cat"))
         viewModel.homeScreenState.test {
             val emittedItem = awaitItem()
@@ -91,7 +108,7 @@ class HomeViewModelTest {
 
     @Test
     fun `test error state`() = runTest {
-        coEvery { useCase.invoke(any()) } answers { flow { emit(Result.Error(message = "")) } }
+        coEvery { useCase(any()) } answers { flow { emit(Result.Error(message = "")) } }
         viewModel.handleHomeIntent(HomeScreenIntent.LoadImages("cat"))
 
         viewModel.homeScreenState.test {
