@@ -11,24 +11,21 @@ import androidx.compose.material3.IconButton
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.unit.dp
 import com.org.appdemo.R
+import com.org.appdemo.common.Util
+import com.org.appdemo.presentation.view.intent.HomeScreenIntent
 
 @Composable
-fun SearchComponent(onSearchClick: (query: String) -> Unit) {
+fun SearchComponent(searchQuery: String, onHomeScreenIntent: (intent: HomeScreenIntent) -> Unit) {
     val keyboardManager = LocalSoftwareKeyboardController.current
-
-    var query by remember { mutableStateOf("") }
-    var errorMessage by remember { mutableStateOf("") }
+    val context = LocalContext.current
 
     OutlinedTextField(
         modifier = Modifier
@@ -37,11 +34,8 @@ fun SearchComponent(onSearchClick: (query: String) -> Unit) {
         placeholder = {
             Text(text = stringResource(id = R.string.search_text))
         },
-        value = query, onValueChange = {
-            if (it.isNotEmpty()) {
-                errorMessage = ""
-            }
-            query = it
+        value = searchQuery, onValueChange = {
+            onHomeScreenIntent(HomeScreenIntent.SearchQuery(searchQuery = it))
         },
         keyboardOptions = KeyboardOptions(
             imeAction = ImeAction.Done
@@ -49,22 +43,19 @@ fun SearchComponent(onSearchClick: (query: String) -> Unit) {
         keyboardActions = KeyboardActions(
             onDone = {
                 keyboardManager?.hide()
-                if (query.isNotEmpty()) {
-                    onSearchClick(query)
-                } else {
-                    errorMessage = "Enter search query first!"
-                }
+                if(searchQuery.isEmpty())
+                    Util.showToastMessage(context = context, message = context.getString(R.string.empty_query_message))
+                else
+                    onHomeScreenIntent(HomeScreenIntent.LoadImages(query = searchQuery))
             }
         ),
         singleLine = true,
-        isError = errorMessage.isNotEmpty(),
         trailingIcon = {
             IconButton(onClick = {
-                if (query.isNotEmpty()) {
-                    onSearchClick(query)
-                } else {
-                    errorMessage = "Enter search query first!"
-                }
+                if(searchQuery.isEmpty())
+                    Util.showToastMessage(context = context, message = context.getString(R.string.empty_query_message))
+                else
+                    onHomeScreenIntent(HomeScreenIntent.LoadImages(query = searchQuery))
             }) {
                 Icon(
                     imageVector = Icons.Filled.Search,
@@ -74,5 +65,4 @@ fun SearchComponent(onSearchClick: (query: String) -> Unit) {
             }
         }
     )
-
 }

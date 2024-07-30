@@ -16,9 +16,9 @@ import com.org.appdemo.presentation.view.screen.home.HomeScreen
 fun NavigationGraph(navHostController: NavHostController) {
     NavHost(navController = navHostController, startDestination = Screen.Home.route) {
         composable(Screen.Home.route) {
-            HomeScreen{ imageUiModel ->
-                val encodedUrl = Util.encodeUrl(imageUiModel.url)
-                navHostController.navigate("${Screen.Details.route}/${imageUiModel.id}/${encodedUrl}/${imageUiModel.width}/${imageUiModel.height}")
+            HomeScreen{ imageModel ->
+                val encodedUrl = Util.encodeUrl(imageModel.url)
+                navHostController.navigate("${Screen.Details.route}/${imageModel.id}/${encodedUrl}/${imageModel.width}/${imageModel.height}")
             }
         }
 

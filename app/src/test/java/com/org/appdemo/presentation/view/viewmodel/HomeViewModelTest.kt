@@ -58,14 +58,18 @@ class HomeViewModelTest {
     }
 
     @Test
-    fun `test success state with ImageUiModel`() = runTest {
+    fun `test success state with ImageResponseModel`() = runTest {
         val images = DataMocks.imageResponseModelList
         coEvery { useCase.invoke(any()) } answers { flow { emit(Result.Success(responseData = images)) } }
         viewModel.handleHomeIntent(HomeScreenIntent.LoadImages("cat"))
 
         viewModel.homeScreenState.test {
             val emittedItem = awaitItem()
-            Assert.assertEquals(HomeScreenState.Success(DataMocks.imageUiModelList), emittedItem)
+            Assert.assertTrue(emittedItem is HomeScreenState.Success)
+            Assert.assertEquals(
+                HomeScreenState.Success(DataMocks.imageResponseModelList),
+                emittedItem
+            )
             cancelAndIgnoreRemainingEvents()
         }
     }

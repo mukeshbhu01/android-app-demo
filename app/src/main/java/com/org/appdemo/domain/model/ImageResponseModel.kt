@@ -6,3 +6,4 @@ data class ImageResponseModel(
     val width: Int,
     val height: Int
 )
+

@@ -36,7 +36,6 @@ The app follows the MVI architecture pattern to manage the state and events. The
 ### Model Layer
 - **ImageModelDto**: Data class representing the response from the API.
 - **ImageResponseModel**: Data class representing the response for specific use case.
-- **ImageUiModel**: UI model class for the images.
 
 ### Intent and State
 - **HomeScreenIntent**: Represents user actions.
