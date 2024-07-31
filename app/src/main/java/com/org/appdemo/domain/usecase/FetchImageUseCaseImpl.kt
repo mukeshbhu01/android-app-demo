@@ -5,6 +5,8 @@ import com.org.appdemo.domain.repository.ImageRepository
 import com.org.appdemo.domain.model.ImageResponseModel
 import com.org.appdemo.domain.model.Result
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.transform
 import javax.inject.Inject
 
 class FetchImageUseCaseImpl @Inject constructor(

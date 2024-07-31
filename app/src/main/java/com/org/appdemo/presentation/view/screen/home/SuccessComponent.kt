@@ -21,12 +21,12 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
 import coil.compose.rememberAsyncImagePainter
+import com.org.appdemo.domain.model.ImageResponseModel
 import com.org.appdemo.presentation.view.intent.HomeScreenIntent
-import com.org.appdemo.presentation.view.model.ImageUiModel
 
 @Composable
 fun SuccessComponent(
-    images: List<ImageUiModel>,
+    images: List<ImageResponseModel>,
     onHomeScreenIntent: (intent: HomeScreenIntent) -> Unit
 ) {
     Column(modifier = Modifier.fillMaxSize()) {
@@ -40,7 +40,7 @@ fun SuccessComponent(
 
 @Composable
 fun ImageGridList(
-    images: List<ImageUiModel>,
+    images: List<ImageResponseModel>,
     onHomeScreenIntent: (intent: HomeScreenIntent) -> Unit
 ) {
     LazyVerticalGrid(
@@ -59,7 +59,7 @@ fun ImageGridList(
 }
 
 @Composable
-fun ImageItemView(image: ImageUiModel, onImageCLick: (image: ImageUiModel) -> Unit) {
+fun ImageItemView(image: ImageResponseModel, onImageCLick: (image: ImageResponseModel) -> Unit) {
     Box(
         modifier = Modifier
             .padding(8.dp)

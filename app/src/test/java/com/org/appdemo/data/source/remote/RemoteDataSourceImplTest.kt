@@ -8,7 +8,7 @@ import com.org.appdemo.MainDispatcherRule
 import com.org.appdemo.common.LogUtil
 import com.org.appdemo.common.NetworkUtility
 import com.org.appdemo.common.exception.NoInternetException
-import com.org.appdemo.data.model.ImageResponse
+import com.org.appdemo.data.model.NetworkImageResponse
 import com.org.appdemo.data.service.ApiConstants
 import com.org.appdemo.data.service.api.ApiService
 import com.org.appdemo.domain.model.ImageResponseModel
@@ -79,7 +79,7 @@ class RemoteDataSourceImplTest {
 
     @Test
     fun `test data source success with empty list`() = runTest {
-        val expected = ImageResponse(emptyList())
+        val expected = NetworkImageResponse(emptyList())
         coEvery { apiService.fetchImageData(any()) } returns expected
 
         remoteDataSource.fetchImages("").test {
@@ -108,7 +108,7 @@ class RemoteDataSourceImplTest {
 
     @Test
     fun `test data source success`() = runTest {
-        val expected = DataMocks.apiResponseModel
+        val expected = DataMocks.networkResponseModel
         coEvery { apiService.fetchImageData(any()) } returns expected
 
         remoteDataSource.fetchImages("").test {

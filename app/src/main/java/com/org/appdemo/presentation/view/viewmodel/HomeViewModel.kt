@@ -3,7 +3,6 @@ package com.org.appdemo.presentation.view.viewmodel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.org.appdemo.common.LogUtil
-import com.org.appdemo.domain.mapper.toImageUiModel
 import com.org.appdemo.domain.model.Result
 import com.org.appdemo.domain.usecase.FetchImageUseCase
 import com.org.appdemo.presentation.view.intent.HomeScreenIntent
@@ -26,6 +25,9 @@ class HomeViewModel @Inject constructor(
         private const val TAG = "HomeViewModel"
     }
 
+    private var _searchQuery = MutableStateFlow("")
+    val searchQuery: StateFlow<String> = _searchQuery.asStateFlow()
+
     private val _homeScreenState: MutableStateFlow<HomeScreenState> =
         MutableStateFlow(HomeScreenState.InitialState)
     val homeScreenState: StateFlow<HomeScreenState> = _homeScreenState.asStateFlow()
@@ -35,11 +37,11 @@ class HomeViewModel @Inject constructor(
         LogUtil.debugLog(log = "User intent -> $intent")
         when (intent) {
             is HomeScreenIntent.LoadImages -> {
-                if (intent.query.isEmpty()) {
-                    _homeScreenState.value = HomeScreenState.ShowEmptyQueryToast
-                } else {
-                    loadImages(intent.query)
-                }
+                loadImages(intent.query)
+            }
+
+            is HomeScreenIntent.SearchQuery -> {
+                _searchQuery.value = intent.searchQuery
             }
 
             else -> {}
@@ -48,7 +50,7 @@ class HomeViewModel @Inject constructor(
 
     private fun loadImages(query: String) {
         viewModelScope.launch {
-            useCase.invoke(searchQuery = query)
+            useCase(searchQuery = query)
                 .onStart {
                     LogUtil.debugLog(log = "Load image..onStart")
                     _homeScreenState.value = HomeScreenState.Loading
@@ -63,11 +65,12 @@ class HomeViewModel @Inject constructor(
                     when (state) {
                         is Result.Success -> {
                             _homeScreenState.value =
-                                HomeScreenState.Success(images = state.responseData.toImageUiModel())
+                                HomeScreenState.Success(images = state.responseData)
                         }
 
                         is Result.Error -> {
-                            _homeScreenState.value = HomeScreenState.Error(message = state.message, code = state.code)
+                            _homeScreenState.value =
+                                HomeScreenState.Error(message = state.message, code = state.code)
                         }
                     }
                 }

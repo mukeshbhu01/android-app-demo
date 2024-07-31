@@ -26,13 +26,6 @@ import com.org.appdemo.presentation.theme.DemoAppTheme
 
 
 @Composable
-fun ShowEmptyQueryToastMessage() {
-    val context = LocalContext.current
-    Toast.makeText(context, stringResource(id = R.string.empty_query_message), Toast.LENGTH_SHORT)
-        .show()
-}
-
-@Composable
 fun BaseAppComponentContainer(
     topBarTitle: String = stringResource(id = R.string.app_name),
     isBackEnable: Boolean = false,

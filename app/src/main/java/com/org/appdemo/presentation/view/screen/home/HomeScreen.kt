@@ -4,12 +4,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import androidx.lifecycle.viewmodel.compose.viewModel
+import com.org.appdemo.domain.model.ImageResponseModel
 import com.org.appdemo.presentation.theme.DemoAppTheme
 import com.org.appdemo.presentation.view.intent.HomeScreenIntent
-import com.org.appdemo.presentation.view.model.ImageUiModel
 import com.org.appdemo.presentation.view.screen.BaseAppComponentContainer
-import com.org.appdemo.presentation.view.screen.ShowEmptyQueryToastMessage
 import com.org.appdemo.presentation.view.state.HomeScreenState
 import com.org.appdemo.presentation.view.viewmodel.HomeViewModel
 
@@ -17,11 +15,12 @@ import com.org.appdemo.presentation.view.viewmodel.HomeViewModel
 @Composable
 fun HomeScreen(
     homeViewModel: HomeViewModel = hiltViewModel(),
-    navigateToDetail: (ImageUiModel) -> Unit
+    navigateToDetail: (ImageResponseModel) -> Unit
 ) {
     val homeScreenState = homeViewModel.homeScreenState.collectAsStateWithLifecycle().value
+    val searchQuery = homeViewModel.searchQuery.collectAsStateWithLifecycle().value
 
-    HomeScreenRendering(state = homeScreenState) { homeIntent ->
+    HomeScreenRendering(state = homeScreenState, searchQuery) { homeIntent ->
         when (homeIntent) {
             is HomeScreenIntent.OnImageSelect -> navigateToDetail(homeIntent.selectedImage)
             else -> homeViewModel.handleHomeIntent(homeIntent)
@@ -30,15 +29,14 @@ fun HomeScreen(
 }
 
 @Composable
-fun HomeScreenRendering(
+internal fun HomeScreenRendering(
     state: HomeScreenState,
+    searchQuery: String = "",
     onHomeScreenIntent: (intent: HomeScreenIntent) -> Unit
 ) {
     BaseAppComponentContainer {
-        SearchComponent { searchQuery ->
-            onHomeScreenIntent(HomeScreenIntent.LoadImages(query = searchQuery))
-        }
-        HomeContent(state = state, onHomeScreenIntent)
+        SearchComponent(searchQuery = searchQuery, onHomeScreenIntent = onHomeScreenIntent)
+        HomeContent(state = state, onHomeScreenIntent = onHomeScreenIntent)
     }
 }
 
@@ -49,7 +47,6 @@ fun HomeContent(state: HomeScreenState, onHomeScreenIntent: (intent: HomeScreenI
         is HomeScreenState.Loading -> LoadingComponent()
         is HomeScreenState.Success -> SuccessComponent(images = state.images, onHomeScreenIntent)
         is HomeScreenState.Error -> ErrorComponent(state.message, state.code)
-        is HomeScreenState.ShowEmptyQueryToast -> ShowEmptyQueryToastMessage()
     }
 }
 
