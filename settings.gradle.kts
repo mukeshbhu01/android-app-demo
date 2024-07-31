@@ -21,3 +21,7 @@ dependencyResolutionManagement {
 
 rootProject.name = "android-app-demo"
 include(":app")
+include(":domain")
+include(":data")
+include(":network")
+include(":presentation")

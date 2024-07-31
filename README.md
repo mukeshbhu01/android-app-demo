@@ -3,7 +3,7 @@
 ## Overview
 This is an app that provides a listing of images on search for query via using lexica.art API. The project is structured using MVI (Model-View-Intent) architecture combined with the CLEAN architecture principles. It leverages various modern Android development tools and libraries such as Retrofit, OkHttp, Flows(StateFlow) for managing state/intent within the ViewModel.
 
-## Features
+## Functionality
 - Fetch and display a list of images based on search.
 - View details of a selected image.
 - Navigate between the list and detail screens.
@@ -16,7 +16,7 @@ The app follows the MVI architecture pattern to manage the state and events. The
 ### Libraries and Tools Used
 - **Retrofit**: For making HTTP requests to the API call.
 - **OkHttp**: For networking.
-- **Asynchronous Programming**: Coroutines + Flow.
+- **Asynchronous Programming**: Coroutines/Flow/StateFlow.
 - **StateFlows**: For managing and observing state in a lifecycle-aware manner.
 - **Compose**: For Ui design.
 - **Hilt**: For dependency injection.
@@ -27,19 +27,19 @@ The app follows the MVI architecture pattern to manage the state and events. The
 - Clicking on any image will navigate you to the detail screen, where you can view the selected image in detail.
 
 ### UI Layer
-- **HomeScreen**: Displays the list of images in grid view(2 items).
-- **DetailScreen**: Displays details of the selected image.
+- **Presentation** : Holds main activity and application navigation
+- **Features** : This module layer further categories the modules on basis of specific features, such as [Home, Details, CommonUI]
+
 
 ### ViewModel Layer
-- **HomeViewModel**: Handles the app ui data state for the Home and Detail screens.
+- **HomeViewModel/DetailsViewModel**: Handles the app ui data state for the Home and Detail screens.
 
-### Model Layer
-- **ImageModelDto**: Data class representing the response from the API.
-- **ImageResponseModel**: Data class representing the response for specific use case.
 
-### Intent and State
+### Intent, Effect and State
 - **HomeScreenIntent**: Represents user actions.
+- **HomeScreenEffect**: Represents the effect on UI action.
 - **HomeScreenState**: Represents the state of the UI.
+- Note: similar for details screen
 
 ### Permissions
 - Internet : android.permission.INTERNET - For api call

@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">presentation</string>
+
+    <string name="no_image_available">No image available. Please try to search.</string>
+    <string name="no_internet_connection">No Internet connection</string>
+    <string name="details">Details</string>
+    <string name="image_model">Model</string>
+    <string name="image_description">Description</string>
+    <string name="image_name">Image id</string>
+    <string name="image_size">Dimension</string>
+    <string name="search_text">Type here to search…</string>
+    <string name="no_search">Enter search query first!</string>
+    <string name="empty_query_message">Enter search query</string>
+    <string name="something_went_wrong">Something went wrong</string>
+</resources>

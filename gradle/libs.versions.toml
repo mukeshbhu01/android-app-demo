@@ -13,8 +13,6 @@ composeBom = "2024.06.00"
 
 #Navigation
 navigationCompose = "2.8.0-beta06"
-serializationPlugin = "1.9.24"
-serialization = "1.6.3"
 hiltNavigaitonCompose = "1.0.0"
 
 #DI
@@ -36,6 +34,8 @@ mockk = "1.13.12"
 coreTesting = "2.2.0"
 kotlinxCoroutinesTest = "1.8.1"
 turbine = "1.0.0"
+appcompat = "1.7.0"
+material = "1.12.0"
 
 [libraries]
 #Core
@@ -57,7 +57,6 @@ androidx-ui-tooling-preview = { group = "androidx.compose.ui", name = "ui-toolin
 
 #Navigation
 navigation-compose = { group = "androidx.navigation", name = "navigation-compose", version.ref = "navigationCompose" }
-kotlinx-serialization-core = { group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-core", version.ref = "serialization" }
 
 #DI
 hilt-android = { group = "com.google.dagger", name = "hilt-android" , version.ref = "hiltVersion"}
@@ -85,6 +84,8 @@ androidx-test-mockk = { group = "io.mockk", name = "mockk", version.ref = "mockk
 kotlinx-coroutines-test = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "kotlinxCoroutinesTest" }
 androidx-core-test = { module = "androidx.arch.core:core-testing", version.ref = "coreTesting" }
 turbine = { module = "app.cash.turbine:turbine", version.ref = "turbine" }
+androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
+material = { group = "com.google.android.material", name = "material", version.ref = "material" }
 
 [bundles]
 compose-ui = [
@@ -101,5 +102,4 @@ android-application = { id = "com.android.application", version.ref = "agp" }
 jetbrains-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 kotlinAndroidKsp = { id = "com.google.devtools.ksp", version.ref ="kspVersion" }
 hiltAndroid = { id = "com.google.dagger.hilt.android", version.ref ="hiltVersion" }
-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref ="serializationPlugin" }
 
