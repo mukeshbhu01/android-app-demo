@@ -1,7 +1,7 @@
 # Demo app
 
 ## Overview
-This is an app that provides a listing of images on search for query via using lexica.art API. The project is structured using MVI (Model-View-Intent) architecture combined with the CLEAN architecture principles. It leverages various modern Android development tools and libraries such as Retrofit, OkHttp, Flows(StateFlow) for managing state/intent within the ViewModel.
+This is an app that provides a listing of images on search for query via using lexica.art API. The project is structured using MVI (Model-View-Intent) architecture combined with the CLEAN architecture principles. It leverages various modern Android development tools and libraries such as Retrofit, OkHttp, Flows(StateFlow/SharedFlow) for managing state/intent within the ViewModel.
 
 # Tech Stack and Architecture
 
