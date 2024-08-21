@@ -15,7 +15,7 @@ This is an app that provides a listing of images on search for query via using l
 
 **Domain Module**: Defines the use cases, business models, and repository interfaces which encapsulate the business logic of the application.
 
-**network Module**: Includes network configuration, dependency required for fetch network resources.
+**Network Module**: Includes network configuration, dependency required for fetch network resources.
 
 ## Tech Stack:
 
