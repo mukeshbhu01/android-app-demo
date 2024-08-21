@@ -3,47 +3,47 @@
 ## Overview
 This is an app that provides a listing of images on search for query via using lexica.art API. The project is structured using MVI (Model-View-Intent) architecture combined with the CLEAN architecture principles. It leverages various modern Android development tools and libraries such as Retrofit, OkHttp, Flows(StateFlow) for managing state/intent within the ViewModel.
 
-## Functionality
-- Fetch and display a list of images based on search.
-- View details of a selected image.
-- Navigate between the list and detail screens.
-- Handle state management using MVI architecture.
+# Tech Stack and Architecture
 
-## Architecture
-### MVI (Model-View-Intent) + CLEAN
-The app follows the MVI architecture pattern to manage the state and events. The architecture ensures a unidirectional data flow and separation of concerns, making the app scalable and maintainable.
+## Application Modules:
 
-### Libraries and Tools Used
-- **Retrofit**: For making HTTP requests to the API call.
-- **OkHttp**: For networking.
-- **Asynchronous Programming**: Coroutines/Flow/StateFlow.
-- **StateFlows**: For managing and observing state in a lifecycle-aware manner.
-- **Compose**: For Ui design.
-- **Hilt**: For dependency injection.
+**App Module**: The entry point of the application. It contains the `AppDemoApplication` class which is responsible for initializing the overall app components.
 
-### Running the App
-- On launching the app, see the search box with no image.
-- On enter search query and click on search icon, you will see a list of images.
-- Clicking on any image will navigate you to the detail screen, where you can view the selected image in detail.
+**Presentation Module**: Holds the UI components, ViewModels, and contracts defining the communication between the UI and ViewModel layers. It utilizes the MVI architecture pattern for a clear separation of concerns.
 
-### UI Layer
-- **Presentation** : Holds main activity and application navigation
-- **Features** : This module layer further categories the modules on basis of specific features, such as [Home, Details, CommonUI]
+**Data Module**: Contains the API service definitions, data sources, data transfer objects (DTOs), and repositories which abstract the data layer. It's responsible for network calls and data delivery.
 
+**Domain Module**: Defines the use cases, business models, and repository interfaces which encapsulate the business logic of the application.
 
-### ViewModel Layer
-- **HomeViewModel/DetailsViewModel**: Handles the app ui data state for the Home and Detail screens.
+**network Module**: Includes network configuration, dependency required for fetch network resources.
 
+## Tech Stack:
 
-### Intent, Effect and State
-- **HomeScreenIntent**: Represents user actions.
-- **HomeScreenEffect**: Represents the effect on UI action.
-- **HomeScreenState**: Represents the state of the UI.
-- Note: similar for details screen
+**Kotlin**: The primary programming language used in the application.
 
-### Permissions
-- Internet : android.permission.INTERNET - For api call
-- Network state: android.permission.ACCESS_NETWORK_STATE - For network status
+**Coroutines & Flow**: For asynchronous operations and data state handling.
+
+**Retrofit**: As the HTTP client for making network requests.
+
+**Dagger-Hilt**: For dependency injection to provide required classes and manage object lifecycles.
+
+**Jetpack Compose**: The modern toolkit for building native UI.
+
+**ViewModel**: To manage UI-related data in a lifecycle-conscious way.
+
+**Navigation Component**: For handling in-app navigation.
+
+**JUnit & MockK**: For unit testing the application components.
+
+**Turbine**: To test Kotlin Flows.
+
+## Architecture:
+
+- **MVI (Model-View-Intent)**: The architectural pattern used in the Presentation module for decoupling UI code from business logic.
+
+- **Clean Architecture**: The overall architectural approach to separate code into layers with distinct roles and dependencies, making the code more modular, scalable, and testable.
+
 
 ## API
+
 - https://lexica.art/ for providing the API service.
