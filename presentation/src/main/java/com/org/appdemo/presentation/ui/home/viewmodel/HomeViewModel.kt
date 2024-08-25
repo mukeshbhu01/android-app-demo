@@ -1,13 +1,10 @@
 package com.org.appdemo.presentation.ui.home.viewmodel
 
 import android.util.Log
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.org.appdemo.domain.model.ImageModel
-import com.org.appdemo.domain.model.Result
+import com.org.appdemo.domain.Result
 import com.org.appdemo.domain.usecase.FetchImageUseCase
 import com.org.appdemo.presentation.ui.home.effect.HomeScreenEffect
 import com.org.appdemo.presentation.ui.home.intent.HomeScreenIntent

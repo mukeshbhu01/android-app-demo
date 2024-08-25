@@ -1,4 +1,4 @@
-package com.org.appdemo.domain.model
+package com.org.appdemo.domain
 
 
 sealed class Result<out T> {

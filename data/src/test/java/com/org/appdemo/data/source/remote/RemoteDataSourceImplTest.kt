@@ -6,7 +6,7 @@ import com.org.appdemo.network.utility.NetworkUtility
 import com.org.appdemo.data.DataMocks
 import com.org.appdemo.data.MainDispatcherRule
 import com.org.appdemo.domain.model.ImageModel
-import com.org.appdemo.domain.model.Result
+import com.org.appdemo.domain.Result
 import com.org.appdemo.data.service.ApiService
 import com.org.appdemo.data.dto.ImageResponseDto
 import io.mockk.coEvery

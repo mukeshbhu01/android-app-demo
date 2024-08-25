@@ -7,7 +7,7 @@ import com.org.appdemo.data.dto.ImageResponseDto
 import com.org.appdemo.data.mapper.toImageResponseDomainModel
 import com.org.appdemo.data.service.ApiService
 import com.org.appdemo.domain.model.ImageModel
-import com.org.appdemo.domain.model.Result
+import com.org.appdemo.domain.Result
 import com.org.appdemo.network.exception.NoInternetException
 import retrofit2.HttpException
 import retrofit2.Response

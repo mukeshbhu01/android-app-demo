@@ -1,7 +1,7 @@
 package com.org.appdemo.domain.usecase
 
 import com.org.appdemo.domain.model.ImageModel
-import com.org.appdemo.domain.model.Result
+import com.org.appdemo.domain.Result
 import com.org.appdemo.domain.repository.HomeImageRepository
 import javax.inject.Inject
 

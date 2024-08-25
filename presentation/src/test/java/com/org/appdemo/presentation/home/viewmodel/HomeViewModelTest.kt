@@ -2,7 +2,7 @@ package com.org.appdemo.presentation.home.viewmodel
 
 import android.util.Log
 import app.cash.turbine.test
-import com.org.appdemo.domain.model.Result
+import com.org.appdemo.domain.Result
 import com.org.appdemo.domain.usecase.FetchImageUseCase
 import com.org.appdemo.presentation.DataMocks
 import com.org.appdemo.presentation.MainDispatcherRule
